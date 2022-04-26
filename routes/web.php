@@ -16,10 +16,13 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     //return Inertia::render('Welcome');
-    return inertia('Home', [
-        'name' => 'Dejan Simeunovic',
-        'frameworks' => [
-            'Laravel', 'Vue', 'Inertia'
-        ]
-    ]);
+    return inertia('Home');
+});
+
+Route::get('/users', function () {
+    return inertia('Users');
+});
+
+Route::get('/settings', function () {
+    return inertia('Settings');
 });
