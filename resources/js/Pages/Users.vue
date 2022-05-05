@@ -1,7 +1,7 @@
 <template>
   <h1 class="text-3xl">
     Users
-  </h1>>
+  </h1>
 
   <div style="margin-top: 400px">
     <p>The current time is {{ time }}.</p>
