@@ -40,7 +40,7 @@
   <Pagination :links="users.links" class="mt-6" />
 </template>
 
-<script setup>
+<!--<script setup>
   import Pagination from '../Shared/Pagination';
   import { ref, watch } from "vue";
   import {Inertia} from "@inertiajs/inertia";
@@ -58,4 +58,33 @@
       replace: true
     });
   });
+</script>-->
+
+<script>
+import Pagination from '../Shared/Pagination';
+
+export default {
+  components: { Pagination },
+
+  props: {
+    users: Object,
+    filters: Object
+  },
+
+  data() {
+    return {
+      search: this.filters.search
+    }
+  },
+
+  watch: {
+    search(value) {
+      this.$inertia.get('/users', { search: value }, {
+        preserveState: true,
+        replace: true
+      });
+    }
+  }
+}
+
 </script>
