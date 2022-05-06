@@ -12,7 +12,8 @@ Route::get('/', function () {
 Route::get('/users', function () {
     //sleep(2);
     return inertia('Users', [
-        'users' => User::all()->map(fn($user) => [
+        'users' => User::paginate(10)->through(fn($user) => [ //with map() we get a new collection, through is almost the same as map, but it's applied to current slice of items
+            'id' => $user->id,
             'name' => $user->name
         ])
     ]);
