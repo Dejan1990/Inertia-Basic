@@ -1,5 +1,5 @@
 <template>
-  <nav>
+<nav>
     <ul class="flex list-disc space-x-4 list-inside">
         <li>
             <NavLink href="/" :active="$page.component === 'Home'">
@@ -18,13 +18,20 @@
                 Settings
             </NavLink>
         </li>
+        <li>
+            <NavLink href="/logout" method="post" as="button">
+                Log Out
+            </NavLink>
+        </li>
     </ul>
-  </nav>
+</nav>
 </template>
 
 <script>
 import NavLink from "./NavLink";
 export default {
-    components: { NavLink },
+    components: {
+        NavLink
+    },
 };
 </script>
