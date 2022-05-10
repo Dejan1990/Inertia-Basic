@@ -44,10 +44,11 @@
   <Pagination :links="users.links" class="mt-6" />
 </template>
 
-<!--<script setup>
+<script setup>
   import Pagination from '../../Shared/Pagination';
   import { ref, watch } from "vue";
   import {Inertia} from "@inertiajs/inertia";
+  import debounce from 'lodash/debounce';
 
   let props = defineProps({
     users: Object,
@@ -56,16 +57,14 @@
 
   let search = ref(props.filters.search);
 
-  watch(search, value => {
-    Inertia.get('/users', { search: value }, {
-      preserveState: true,
-      replace: true
-    });
-  });
-</script>-->
+  watch(search, debounce(function (value) {
+    Inertia.get('/users', { search: value }, { preserveState: true, replace: true });
+  }, 300));
+</script>
 
-<script>
+<!--<script>
 import Pagination from '../../Shared/Pagination';
+import { debounce } from "lodash";
 
 export default {
   components: { Pagination },
@@ -82,13 +81,13 @@ export default {
   },
 
   watch: {
-    search(value) {
-      this.$inertia.get('/users', { search: value }, {
+    search: debounce(function (value) {
+      this.$inertia.get('/users', {search: value}, {
         preserveState: true,
         replace: true
-      });
-    }
+      })
+    }, 300)
   }
 }
 
-</script>
+</script>-->
